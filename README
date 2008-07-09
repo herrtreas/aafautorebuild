@@ -1,13 +1,27 @@
-AafAutoRebuild
+AAFAutoRebuild
 ==============
 
-Introduction goes here.
+AAFAutoRebuild is rails plugin, that automatically rebuilds your Ferret index if field definitions have changed. 
+Its main purpose is to reduce deploy time by only rebuilding parts of your index. 
+
+The plugin only works in conjunction with acts_as_ferret.
 
 
-Example
-=======
+Setup & Usage
+=============
 
-Example goes here.
+To install the plugin (Rails >= 2.1):
+./script/plugin install git://github.com/rubyphunk/aafautorebuild.git
+
+If you are on older rails you can 'git clone' the repository.
+
+After installing the plugin your new and shiny task
+'rake ferret:index:auto_rebuild' should be available.
+
+The plugin works out of the box without configuration, but if you want to use it in your deployment setup you should set the
+APPLICATION_NAME constant in your environment.rb. This is necessary because AAFAutoRebuild keeps your acts_as_ferret configuration state 
+based on the directory your application is living in, unless APPLICATION_NAME is available. So if your app is deployed to changing
+release directories the plugin will never be able to restore your last Ferret state.
 
 
-Copyright (c) 2008 [name of plugin creator], released under the MIT license
+Copyright (c) 2008 Andreas Wolff (rubyphunk.com), released under the MIT license
