@@ -21,4 +21,13 @@ After installing the plugin your new and shiny task
 The plugin works out of the box without configuration, but if you want to use it in your deployment setup you should set the APPLICATION_NAME constant in your environment.rb. This is necessary because AAFAutoRebuild keeps your acts_as_ferret configuration state based on the directory your application is living in, unless APPLICATION_NAME is available. So if your app is deployed to changing release directories the plugin will never be able to restore your last Ferret state.
 
 
+Here is a sample Capistrano task:
+=================================
+
+desc "Auto rebuild ferret index"
+task :rebuild, :roles => [:ferret] do
+  run "cd #{current_path}; rake RAILS_ENV=production ferret:index:auto_rebuild"
+end
+
+
 Copyright (c) 2008 Andreas Wolff (rubyphunk.com), released under the MIT license
