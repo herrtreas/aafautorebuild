@@ -1,7 +1,7 @@
 require 'digest/md5'
 require File.join(File.dirname(__FILE__), '../lib/aaf_auto_rebuild')
 
-STORE = ENV['HOME'] + "/.ferret_auto_build_field_definitions"
+STORE = File.join((ENV['HOME'] || "."), ".ferret_auto_build_field_definitions")
 
 namespace :ferret do
   namespace :index do
